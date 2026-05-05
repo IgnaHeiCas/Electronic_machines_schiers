@@ -12,4 +12,4 @@ selected = hub_menu("1", "2", "3", "4", "5")
 # Based on the selection, run a program.
 if selected == "1":
     import Fahren
-    test
+
