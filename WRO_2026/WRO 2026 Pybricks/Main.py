@@ -7,11 +7,11 @@ from pybricks.tools import wait, StopWatch, hub_menu, run_task, multitask
 hub = PrimeHub()
 # === Setup ===
 #Fahren
-l_motor = Motor(Port.A, profile=11, positive_direction=Direction.COUNTERCLOCKWISE)
-r_motor = Motor(Port.B)
+l_motor = Motor(Port.A, profile=4, positive_direction=Direction.COUNTERCLOCKWISE)
+r_motor = Motor(Port.B, profile=4)
 #Arme
-hoch_arm = Motor(Port.E)
-zangen_arm = Motor(Port.F, gears=[12, 20])
+hoch_arm = Motor(Port.E, profile=4)
+zangen_arm = Motor(Port.F, profile=4, gears=[12, 20])
 
 drive = DriveBase(r_motor, l_motor, wheel_diameter=50, axle_track=75)
 
