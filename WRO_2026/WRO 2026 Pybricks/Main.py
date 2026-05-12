@@ -15,7 +15,7 @@ zangen_arm = Motor(Port.D, gears=[12, 20])
 
 drive = DriveBase(r_motor, l_motor, wheel_diameter=62.5, axle_track=196.5)
 
-drive.settings(straight_speed=1000, straight_acceleration=500, turn_rate=500, turn_acceleration=500)
+drive.settings(straight_speed=1000, straight_acceleration=1000, turn_rate=600, turn_acceleration=1000)
 
 def hoch(): #async ist für await und multitask
     #Kalibriert den Roboter Arm auf physische Limit
@@ -30,22 +30,24 @@ def zange_hoch():
 
 def halte_bloecke(laufen):
     if laufen:
-        zangen_arm.run(800)
+        zangen_arm.dc(1000)
     else:
         zangen_arm.brake()
+
+def hoch_genau(grad):
+    hoch_arm.run_angle(1000, grad)
 
 # === Programme ===
 def gelbe_bausteine():
     hoch()
     drive.straight(195)
-    drive.straight(-25)
+    drive.straight(-35)
     hoch_arm.run(-200)
     wait(50)
     zangen_arm.run_until_stalled(200)
 
 def aus_gelbe_steine_fahren():
     halte_bloecke(True)
-
     hoch()
     drive.straight(-130)
     drive.turn(-90)
@@ -62,41 +64,57 @@ def aus_gelbe_steine_fahren():
 def bauklotz_1():
     drive.straight(-83)
     drive.straight(72.5)
-    drive.turn(-87)
+    drive.turn(-90)
     drive.straight(557)
-    drive.turn(87)
+    drive.turn(90)
     drive.straight(-134)
     drive.straight(474)
     drive.straight(-27)
     drive.turn(-15)
-    hoch_arm.run_until_stalled(800)
+    hoch()
     drive.turn(15)
     drive.straight(105)
     drive.turn(89)
     drive.straight(443)
-    hoch_arm.track_target(151)
     wait(100)
+    hoch_genau(-30)
     halte_bloecke(False)
-    zangen_arm.run_until_stalled(800)
-    hoch_arm.run_until_stalled(800)
+    zange_hoch()
+    hoch_genau(16.5)
     wait(50)
 
 def grüne_steine():
-    drive.straight(-1260)
-    hoch_arm.track_target(191)
-    drive.straight(-140)
-    drive.straight(610)
-    drive.turn(105)
-    drive.turn(-15)
-    hoch_arm.track_target(128)
-    multitask (drive.straight(-850), hoch_arm.track_target(190))
+    drive.straight(-800)
+    hoch_arm.run_until_stalled(-800)
+    drive.straight(-90)
+    drive.straight(336)
+    drive.turn(-105)
+    drive.turn(15)
+    hoch_arm.run_until_stalled(800)
+    drive.straight(-475)
+    hoch_arm.run_until_stalled(-800)
+    drive.straight(-133)
+    drive.straight(61)
+    drive.turn(83)
+    hoch_arm.run_until_stalled(800)
+    hoch_genau(-30)
+    drive.straight(-295)
+    hoch_arm.run_until_stalled(-800)
 
+def weisse_steine():
+    drive.straight(500)
+    drive.turn(83)
 
 
 # === hier laufen lassen ===
-#hoch()
-#zange_hoch()
-#gelbe_bausteine()
-#aus_gelbe_steine_fahren()
-#bauklotz_1()
-hoch_arm.run(100)
+hoch()
+zange_hoch()
+gelbe_bausteine()
+aus_gelbe_steine_fahren()
+bauklotz_1()
+grüne_steine()
+
+
+
+
+
