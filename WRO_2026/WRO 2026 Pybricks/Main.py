@@ -15,9 +15,9 @@ zangen_arm = Motor(Port.D, gears=[12, 20])
 
 drive = DriveBase(r_motor, l_motor, wheel_diameter=62.5, axle_track=196.5)
 
-drive.settings(straight_speed=800, straight_acceleration=1000, turn_rate=500, turn_acceleration=500)
+drive.settings(straight_speed=800, straight_acceleration=500, turn_rate=500, turn_acceleration=500)
 
-max_speed = 100
+max_ges = 800
 def hoch(): #async ist für await und multitask
     #Kalibriert den Roboter Arm auf physische Limit
     hoch_arm.run_until_stalled(-800, duty_limit=100),
@@ -43,6 +43,7 @@ def gelbe_bausteine():
     hoch_arm.run(100)
     wait(50)
     zangen_arm.run_until_stalled(200)
+
 def aus_gelbe_steine_fahren():
     halte_bloecke(True)
     hoch()
@@ -73,8 +74,21 @@ def bauklotz_1():
     drive.straight(190)
     drive.turn(-89)
     drive.straight(800)
-    zangen_arm.track_target(151)
     halte_bloecke(False)
+    zangen_arm.track_target(151)
+    wait(50)
+
+def grüne_steine():
+    drive.straight(-1260)
+    hoch_arm.track_target(191)
+    drive.straight(-140)
+    drive.straight(610)
+    drive.turn(105)
+    drive.turn(-15)
+    hoch_arm.track_target(128)
+    multitask (drive.straight(-850), hoch_arm.track_target(190))
+
+
 
 # === hier laufen lassen ===
 hoch()
