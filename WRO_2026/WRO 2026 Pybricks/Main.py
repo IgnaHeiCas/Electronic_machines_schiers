@@ -34,25 +34,30 @@ def halte_bloecke(laufen):
     else:
         zangen_arm.brake()
 
+def halte_oben(laufen):
+    if laufen:
+        hoch_arm.dc(1000)
+    else:
+        hoch_arm.brake()
+
 def hoch_genau(grad):
     hoch_arm.run_angle(1000, grad)
 
 # === Programme ===
-def gelbe_bausteine():
+def start():
     hoch()
-    drive.straight(195)
-    drive.straight(-35)
+    drive.straight(180)
+    drive.straight(-25)
     hoch_arm.run(-200)
     wait(50)
     zangen_arm.run_until_stalled(200)
 
-def aus_gelbe_steine_fahren():
+def gelbe_bloecke_aufnehmen():
     halte_bloecke(True)
     hoch()
     drive.straight(-130)
     drive.turn(-90)
     drive.straight(-140)
-    drive.settings(straight_speed=400)
     #vlt
     #drive.straight(30)
     #drive.settings(straight_speed=800)
@@ -61,7 +66,7 @@ def aus_gelbe_steine_fahren():
     drive.straight(-42)
     hoch_arm.run_until_stalled(-1000)
 
-def bauklotz_1():
+def bei_kessel():
     drive.straight(-83)
     drive.straight(72.5)
     drive.turn(-90)
@@ -83,7 +88,7 @@ def bauklotz_1():
     hoch_genau(16.5)
     wait(50)
 
-def grüne_steine():
+def gelbe_bauklötze_versorgt():
     drive.straight(-800)
     hoch_arm.run_until_stalled(-800)
     drive.straight(-90)
@@ -91,29 +96,32 @@ def grüne_steine():
     drive.turn(-105)
     drive.turn(15)
     hoch_arm.run_until_stalled(800)
-    drive.straight(-475)
-    hoch_arm.run_until_stalled(-800)
-    drive.straight(-133)
-    drive.straight(61)
+    halte_oben(True)
+    drive.straight(-447)
+    halte_oben(False)
     drive.turn(83)
-    hoch_arm.run_until_stalled(800)
-    hoch_genau(-30)
+    hoch_genau(-33)
     drive.straight(-295)
     hoch_arm.run_until_stalled(-800)
 
-def weisse_steine():
+def weisse_steine_im_käfig():
     drive.straight(500)
     drive.turn(83)
+
+#def weisse_grüne_versorgt():
+
+#def ausrichten_vor_dreieckskelle():
+
+#def ausrichten_vor_blaue_bausteine():
 
 
 # === hier laufen lassen ===
 hoch()
 zange_hoch()
-gelbe_bausteine()
-aus_gelbe_steine_fahren()
-bauklotz_1()
-grüne_steine()
-
+start()
+gelbe_bloecke_aufnehmen()
+bei_kessel()
+gelbe_bauklötze_versorgt()
 
 
 
