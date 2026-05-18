@@ -49,6 +49,8 @@ def halte_unten(laufen):
 def hoch_genau(grad):
     hoch_arm.run_angle(1000, grad)
 
+def drehe_b(grad):
+    r_motor.run_angle(1000, grad)
 # === Programme ===
 def start():
     hoch()
@@ -178,10 +180,25 @@ def gelbe_versorgen():
 def dreieckskelle_versorgt():
     drive.straight(306)
     drive.turn(90)
-    drive.straight(50)
-    drive.straight(50)
+    drive.straight(-183)
+    hoch_genau(-30)
+    drive.straight(-189)
+    drive.straight(83)
+    drive.turn(-45)
+    drive.turn(15)
+    drive.straight(312)
+    drive.turn(45)
+    drive.straight(362)
+    hoch_arm.run_until_stalled(800)
+    
 
 def fertig():
+    drehe_b(1000)
+    drive.straight(-61)
+    drive.straight(-61)
+    drive.straight(-61)
+    drive.straight(-61)
+    drive.straight(-61)
     drive.straight(-61)
 
 
@@ -196,5 +213,3 @@ gelbe_bauklötze_versorgt()
 grüne_steine_aufnehmen()
 weisse_steine_im_käfig()
 grün_weiss_abliefern()
-
-
