@@ -51,18 +51,18 @@ def halte_unten(laufen):
 def hoch_genau(grad):
     hoch_arm.run_angle(1000, grad)
 
-def bis_gruen():
-    if l_farb.reflection(>94%) or r_farb.reflection(>94%) :
-        drive.brake()
-    else:
-        drive.straight(3)
+#def bis_gruen():
+    #if l_farb.reflection(>94%) or r_farb.reflection(>94%) :
+        #drive.brake()
+    #else:
+        #drive.straight(3)
 
 
 # === Programme ===
 def start():
     hoch()
     drive.settings(straight_speed=300)
-    drive.straight(184)
+    drive.straight(195)
     drive.straight(-19)
     hoch_arm.run_until_stalled(-800)
     halte_unten(True)
@@ -83,7 +83,8 @@ def gelbe_bloecke_aufnehmen():
     #drive.settings(straight_speed=800)
     drive.straight(500)
     drive.reset()
-    drive.straight(650)
+    drive.turn(1)
+    drive.straight(600)
     drive.turn(90)
     drive.straight(-30)
     halte_oben(False)
@@ -93,9 +94,10 @@ def gelbe_bloecke_aufnehmen():
 def bei_kessel():
     drive.straight(-83)
     hoch_arm.run_until_stalled(-1000)
+    drive.straight(-20)
     drive.straight(65)
     drive.turn(-90)
-    drive.straight(525)
+    drive.straight(575)
     drive.turn(90)
     #drive.straight(-134)
     drive.straight(340)
@@ -104,7 +106,7 @@ def bei_kessel():
     hoch()
     halte_oben(True)
     drive.turn(15)
-    drive.straight(120)
+    drive.straight(140)
     drive.turn(89)
     drive.settings(straight_speed=300)
     drive.straight(443)
@@ -116,6 +118,8 @@ def gelbe_bauklötze_versorgt():
     halte_bloecke(False)
     zange_hoch()
     wait(1000)
+    hoch_arm.run_until_stalled(800)
+    hoch_genau(-40)
 
 def grüne_steine_aufnehmen():
     drive.settings(straight_speed=1000)
@@ -242,6 +246,6 @@ start()
 gelbe_bloecke_aufnehmen()
 bei_kessel()
 gelbe_bauklötze_versorgt()
-#grüne_steine_aufnehmen()
-#weisse_steine_im_käfig()
-#grün_weiss_abliefern()
+grüne_steine_aufnehmen()
+weisse_steine_im_käfig()
+grün_weiss_abliefern()
