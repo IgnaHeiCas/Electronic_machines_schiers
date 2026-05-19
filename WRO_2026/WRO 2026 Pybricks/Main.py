@@ -12,7 +12,9 @@ r_motor = Motor(Port.B, profile=5)
 #Arme
 hoch_arm = Motor(Port.F, positive_direction=Direction.COUNTERCLOCKWISE)
 zangen_arm = Motor(Port.D, gears=[12, 20])
-
+#Farbsensor
+l_farb = ColorSensor(Port.C)
+r_farb = ColorSensor(Port.E)
 drive = DriveBase(r_motor, l_motor, wheel_diameter=62.5, axle_track=196.5)
 
 drive.settings(straight_speed=1000, straight_acceleration=1000, turn_rate=600, turn_acceleration=1000)
@@ -25,7 +27,7 @@ def hoch(): #async ist für await und multitask
 def zange_hoch(): 
 
     #Kalibriert den Roboter Arm auf physische Limit
-    zangen_arm.run_until_stalled(-800, duty_limit=100),
+    zangen_arm.run_until_stalled(-100, duty_limit=100),
     zangen_arm.reset_angle(0)
 
 def halte_bloecke(laufen):
@@ -49,24 +51,31 @@ def halte_unten(laufen):
 def hoch_genau(grad):
     hoch_arm.run_angle(1000, grad)
 
-def drehe_b(grad):
-    r_motor.run_angle(1000, grad)
+def bis_gruen():
+    if l_farb.reflection(>94%) or r_farb.reflection(>94%) :
+        drive.brake()
+    else:
+        drive.straight(3)
+
+
 # === Programme ===
 def start():
     hoch()
     drive.settings(straight_speed=300)
-    drive.straight(180)
-    drive.straight(-35)
-    #hoch_arm.run(-200)
+    drive.straight(184)
+    drive.straight(-19)
+    hoch_arm.run_until_stalled(-800)
+    halte_unten(True)
     drive.settings(straight_speed=1000)
     wait(50)
     zangen_arm.run_until_stalled(800)
 
 def gelbe_bloecke_aufnehmen():
     halte_bloecke(True)
+    halte_unten(False)
     hoch_arm.run_until_stalled(800)
     halte_oben(True)
-    drive.straight(-100)
+    drive.straight(-90)
     drive.turn(-90)
     drive.straight(-140)
     #vlt
@@ -84,7 +93,7 @@ def gelbe_bloecke_aufnehmen():
 def bei_kessel():
     drive.straight(-83)
     hoch_arm.run_until_stalled(-1000)
-    drive.straight(72.5)
+    drive.straight(65)
     drive.turn(-90)
     drive.straight(525)
     drive.turn(90)
@@ -95,19 +104,18 @@ def bei_kessel():
     hoch()
     halte_oben(True)
     drive.turn(15)
-    drive.straight(140)
+    drive.straight(120)
     drive.turn(89)
     drive.settings(straight_speed=300)
     drive.straight(443)
     wait(100)
     halte_oben(False)
-    hoch_genau(-30)
+    hoch_arm.run_until_stalled(-800)
 
 def gelbe_bauklötze_versorgt():
     halte_bloecke(False)
     zange_hoch()
-    #hoch_genau(18)
-    wait(50)
+    wait(1000)
 
 def grüne_steine_aufnehmen():
     drive.settings(straight_speed=1000)
@@ -191,15 +199,39 @@ def dreieckskelle_versorgt():
     drive.straight(362)
     hoch_arm.run_until_stalled(800)
     
+def blaue_bloecke_aufnehmen():
+    r_motor.run_angle(1000, 1000)
+    drive.straight(362)
+    drive.straight(-142)
+    drive.turn(-90)
+    drive.straight(206)
+    drive.straight(-28)
+    hoch_arm.run_until_stalled(-800)
+    halte_unten(True)
+    wait(50)
+    zangen_arm.run_until_stalled(800)
+    halte_bloecke(True)
+    halte_unten(False)
 
 def fertig():
-    drehe_b(1000)
-    drive.straight(-61)
-    drive.straight(-61)
-    drive.straight(-61)
-    drive.straight(-61)
-    drive.straight(-61)
-    drive.straight(-61)
+    hoch_arm.run_until_stalled(800)
+    halte_oben(True)
+    drive.straight(153)
+    drive.settings(straight_speed=300)
+    bis_gruen()
+    drive.settings(straight_speed=1000)
+    drive.straight(28)
+    drive.straight(-72)
+    drive.turn(-90)
+    drive.straight(-150)
+    drive.straight(500)
+    drive.reset()
+    drive.settings(straight_speed=300)
+    drive.straight(536)
+    halte_oben(False)
+    hoch_arm.run_until_stalled(-800)
+    halte_bloecke(False)
+    zange_hoch()
 
 
 # === hier laufen lassen ===
@@ -210,6 +242,6 @@ start()
 gelbe_bloecke_aufnehmen()
 bei_kessel()
 gelbe_bauklötze_versorgt()
-grüne_steine_aufnehmen()
-weisse_steine_im_käfig()
-grün_weiss_abliefern()
+#grüne_steine_aufnehmen()
+#weisse_steine_im_käfig()
+#grün_weiss_abliefern()
