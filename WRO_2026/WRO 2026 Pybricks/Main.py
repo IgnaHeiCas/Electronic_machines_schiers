@@ -51,12 +51,10 @@ def halte_unten(laufen):
 def hoch_genau(grad):
     hoch_arm.run_angle(1000, grad)
 
-#def bis_gruen():
-    #if l_farb.reflection(>94%) or r_farb.reflection(>94%) :
-        #drive.brake()
-    #else:
-        #drive.straight(3)
-
+def bis_gruen():
+   while l_farb.reflection() >= 94 or r_farb.reflection() >= 94:
+        drive.straight(3)
+    drive.brake()
 
 # === Programme ===
 def start():
