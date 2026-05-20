@@ -25,10 +25,12 @@ def hoch(): #async ist für await und multitask
     hoch_arm.reset_angle(0)
 
 def zange_hoch(): 
-
     #Kalibriert den Roboter Arm auf physische Limit
-    zangen_arm.run_until_stalled(-100, duty_limit=100),
+    zangen_arm.run_until_stalled(-1000, duty_limit=100),
     zangen_arm.reset_angle(0)
+
+def zange_genau(grad):
+        zangen_arm.run_angle(-1000, grad),
 
 def halte_bloecke(laufen):
     if laufen:
@@ -54,7 +56,8 @@ def hoch_genau(grad):
 def bis_gruen():
    while l_farb.reflection() >= 94 or r_farb.reflection() >= 94:
         drive.straight(3)
-    drive.brake()
+    #else:
+        #drive.stop()
 
 # === Programme ===
 def start():
@@ -84,7 +87,7 @@ def gelbe_bloecke_aufnehmen():
     drive.turn(1)
     drive.straight(600)
     drive.turn(90)
-    drive.straight(-30)
+    drive.straight(-35)
     halte_oben(False)
     hoch_arm.run(-1000)
     wait(1000)
@@ -104,7 +107,7 @@ def bei_kessel():
     hoch()
     halte_oben(True)
     drive.turn(15)
-    drive.straight(140)
+    drive.straight(143)
     drive.turn(89)
     drive.settings(straight_speed=300)
     drive.straight(443)
@@ -114,21 +117,29 @@ def bei_kessel():
 
 def gelbe_bauklötze_versorgt():
     halte_bloecke(False)
-    zange_hoch()
-    wait(1000)
+    zange_genau(40)
+    wait(500)
+    zangen_arm.run_until_stalled(1000, duty_limit=100)
+    wait(500)
+    zange_genau(40)
+    zangen_arm.run_until_stalled(-1000, duty_limit=100)
     hoch_arm.run_until_stalled(800)
-    hoch_genau(-40)
 
 def grüne_steine_aufnehmen():
+    halte_oben(True)
     drive.settings(straight_speed=1000)
-    drive.straight(-780)
+    drive.straight(-400)
+    halte_oben(False)
+    drive.reset()
+    hoch_genau(-27)
+    drive.straight(-380)
     hoch_arm.run_until_stalled(-800)
     halte_unten(True)
     drive.straight(-90)
     drive.straight(336)
     drive.turn(-110)
-    drive.turn(40)
-    drive.turn(-20)
+    #drive.turn(40)
+    drive.turn(20)
     halte_unten(False)
 
 def weisse_steine_im_käfig():
@@ -148,9 +159,9 @@ def grün_weiss_abliefern():
     drive.straight(-100)
     drive.straight(544)
     drive.turn(-90)
-    drive.straight(-380)
-    drive.settings(300)
-    drive.straight(17)
+    drive.straight(-376)
+    drive.settings(straight_speed=300)
+    #drive.straight(17)
     drive.turn(-45)
     drive.straight(-108) 
     halte_unten(False)
@@ -160,11 +171,12 @@ def grün_weiss_abliefern():
     hoch_arm.run_until_stalled(-800)
     halte_unten(True)
     drive.straight(-95)
-    drive.straight(95)
-    #drive.turn(44)
+    drive.straight(110)
+    drive.turn(44)
     #drive.straight(-55)
-    #drive.straight(72)
-    #hoch_arm.run_until_stalled(800)
+    halte_unten(False)
+    hoch_arm.run_until_stalled(800)
+    drive.straight(-105)
 
 def blaue_steine_im_käfig():
     drive.straight(-61)
@@ -247,3 +259,4 @@ gelbe_bauklötze_versorgt()
 grüne_steine_aufnehmen()
 weisse_steine_im_käfig()
 grün_weiss_abliefern()
+#neu
