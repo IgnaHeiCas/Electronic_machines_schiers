@@ -46,7 +46,7 @@ def halte_oben(laufen):
 
 def halte_unten(laufen):
     if laufen:
-        hoch_arm.dc(-1000)
+        hoch_arm.run(-1000)
     else:
         hoch_arm.brake()
 
@@ -97,6 +97,8 @@ def bei_kessel():
     hoch_arm.run_until_stalled(-1000)
     drive.straight(-20)
     drive.straight(65)
+    wait(100)
+    hoch_genau(7)
     drive.turn(-90)
     drive.straight(575)
     drive.turn(90)
@@ -107,7 +109,7 @@ def bei_kessel():
     hoch()
     halte_oben(True)
     drive.turn(15)
-    drive.straight(143)
+    drive.straight(144)
     drive.turn(89)
     drive.settings(straight_speed=300)
     drive.straight(443)
@@ -145,7 +147,7 @@ def grüne_steine_aufnehmen():
 def weisse_steine_im_käfig():
     hoch_arm.run_until_stalled(800)
     halte_oben(True)
-    drive.straight(-460)
+    drive.straight(-470)
     halte_oben(False)
     hoch_genau(-30)
     drive.turn(83)
@@ -159,16 +161,18 @@ def grün_weiss_abliefern():
     drive.straight(-100)
     drive.straight(544)
     drive.turn(-90)
-    drive.straight(-376)
+    drive.straight(-380)
     drive.settings(straight_speed=300)
     #drive.straight(17)
     drive.turn(-45)
-    drive.straight(-108) 
+    drive.straight(-100) 
+    drive.straight(20)
     halte_unten(False)
     hoch_arm.run_until_stalled(800) 
     hoch_genau(-30)
-    drive.straight(118)
+    drive.straight(90)
     hoch_arm.run_until_stalled(-800)
+    wait(100)
     halte_unten(True)
     drive.straight(-95)
     drive.straight(110)
@@ -179,9 +183,11 @@ def grün_weiss_abliefern():
     drive.straight(-105)
 
 def blaue_steine_im_käfig():
-    drive.straight(-61)
-    drive.straight(-61)
-    drive.straight(-61)
+    drive.settings(straight_speed=1000)
+    drive.straight(400)
+    drive.turn(130)
+    #drive.straight(-61)
+    #drive.straight(-61)
 
 def gelbe_im_käfig():
     drive.straight(-61)
@@ -198,7 +204,7 @@ def gelbe_versorgen():
     drive.turn(-90)
     drive.straight(-267)
     hoch_arm.run_until_stalled(800)
-
+  
 def dreieckskelle_versorgt():
     drive.straight(306)
     drive.turn(90)
@@ -259,4 +265,5 @@ gelbe_bauklötze_versorgt()
 grüne_steine_aufnehmen()
 weisse_steine_im_käfig()
 grün_weiss_abliefern()
-#neu
+blaue_steine_im_käfig()
+#aktuell
