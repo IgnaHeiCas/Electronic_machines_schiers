@@ -30,7 +30,7 @@ def zange_hoch():
     zangen_arm.reset_angle(0)
 
 def zange_genau(grad):
-        zangen_arm.run_angle(-1000, grad),
+        zangen_arm.run_angle(-800, grad),
 
 def halte_bloecke(laufen):
     if laufen:
@@ -40,18 +40,18 @@ def halte_bloecke(laufen):
 
 def halte_oben(laufen):
     if laufen:
-        hoch_arm.dc(1000)
+        hoch_arm.dc(800)
     else:
         hoch_arm.brake()
 
 def halte_unten(laufen):
     if laufen:
-        hoch_arm.run(-1000)
+        hoch_arm.run(-800)
     else:
         hoch_arm.brake()
 
 def hoch_genau(grad):
-    hoch_arm.run_angle(1000, grad)
+    hoch_arm.run_angle(800, grad)
 
 def bis_gruen():
    while l_farb.reflection() >= 94 or r_farb.reflection() >= 94:
@@ -67,7 +67,7 @@ def start():
     drive.straight(-19)
     hoch_arm.run_until_stalled(-800)
     halte_unten(True)
-    drive.settings(straight_speed=1000)
+    drive.settings(straight_speed=800)
     wait(50)
     zangen_arm.run_until_stalled(800)
 
@@ -89,16 +89,20 @@ def gelbe_bloecke_aufnehmen():
     drive.turn(90)
     drive.straight(-35)
     halte_oben(False)
-    hoch_arm.run(-1000)
+    hoch_arm.run(-800)
     wait(1000)
 
 def bei_kessel():
-    drive.straight(-83)
+    halte_unten(True)
+    drive.straight(-75)
     hoch_arm.run_until_stalled(-1000)
-    drive.straight(-20)
-    drive.straight(65)
+    drive.straight(20)
+    hoch_arm.run_until_stalled(-1000)
+    drive.straight(-32)
+    drive.straight(67)
+    halte_unten(False)
     wait(100)
-    hoch_genau(7)
+    #hoch_genau(7)
     drive.turn(-90)
     drive.straight(575)
     drive.turn(90)
@@ -109,7 +113,7 @@ def bei_kessel():
     hoch()
     halte_oben(True)
     drive.turn(15)
-    drive.straight(144)
+    drive.straight(140)
     drive.turn(89)
     drive.settings(straight_speed=300)
     drive.straight(443)
@@ -121,19 +125,20 @@ def gelbe_bauklötze_versorgt():
     halte_bloecke(False)
     zange_genau(40)
     wait(500)
-    zangen_arm.run_until_stalled(1000, duty_limit=100)
+    zangen_arm.run_until_stalled(800, duty_limit=100)
     wait(500)
     zange_genau(40)
-    zangen_arm.run_until_stalled(-1000, duty_limit=100)
+    zangen_arm.run_until_stalled(-800, duty_limit=100)
     hoch_arm.run_until_stalled(800)
 
 def grüne_steine_aufnehmen():
     halte_oben(True)
-    drive.settings(straight_speed=1000)
+    drive.settings(straight_speed=800)
     drive.straight(-400)
     halte_oben(False)
     drive.reset()
-    hoch_genau(-27)
+    drive.turn(-1)
+    hoch_genau(-30)
     drive.straight(-380)
     hoch_arm.run_until_stalled(-800)
     halte_unten(True)
@@ -170,27 +175,49 @@ def grün_weiss_abliefern():
     halte_unten(False)
     hoch_arm.run_until_stalled(800) 
     hoch_genau(-30)
-    drive.straight(90)
-    hoch_arm.run_until_stalled(-800)
-    wait(100)
-    halte_unten(True)
-    drive.straight(-95)
     drive.straight(110)
+    drive.straight(-10)
+    hoch_arm.run_until_stalled(-800)
+    halte_unten(True)
+    wait(1000)
+    drive.straight(-120)
+    drive.straight(125)
     drive.turn(44)
     #drive.straight(-55)
     halte_unten(False)
     hoch_arm.run_until_stalled(800)
-    drive.straight(-105)
+    drive.straight(-125)
 
 def blaue_steine_im_käfig():
-    drive.settings(straight_speed=1000)
-    drive.straight(400)
-    drive.turn(130)
-    #drive.straight(-61)
-    #drive.straight(-61)
+    drive.settings(straight_speed=800)
+    drive.straight(330)
+    drive.turn(135)
+    drive.straight(-355)
+    drive.turn(45)
+    hoch_genau(-27)
+    drive.straight(-135)
+    hoch_arm.run_until_stalled(-800)
+    halte_unten(True)
+    drive.straight(-75)
+    drive.straight(336)
+    drive.turn(110)
+    drive.turn(-20)
+    halte_unten(False)
+    hoch_arm.run_until_stalled(800)
+    halte_oben(True)
+    drive.straight(-500)
+    halte_oben(False)
+    hoch_genau(-27)
+    drive.turn(-90)
 
 def gelbe_im_käfig():
-    drive.straight(-61)
+    drive.straight(-300)
+    hoch_arm.run_until_stalled(-800)
+    halte_unten(True)
+    drive.straight(-75)
+    drive.straight(334)
+    drive.turn(-90)
+    drive.straight(-837)
 
 def gelbe_versorgen():
     drive.straight(50)
@@ -203,6 +230,7 @@ def gelbe_versorgen():
     drive.straight(83)
     drive.turn(-90)
     drive.straight(-267)
+    halte_unten(False)
     hoch_arm.run_until_stalled(800)
   
 def dreieckskelle_versorgt():
@@ -220,7 +248,7 @@ def dreieckskelle_versorgt():
     hoch_arm.run_until_stalled(800)
     
 def blaue_bloecke_aufnehmen():
-    r_motor.run_angle(1000, 1000)
+    r_motor.run_angle(800, 1000,)
     drive.straight(362)
     drive.straight(-142)
     drive.turn(-90)
@@ -239,7 +267,7 @@ def fertig():
     drive.straight(153)
     drive.settings(straight_speed=300)
     bis_gruen()
-    drive.settings(straight_speed=1000)
+    drive.settings(straight_speed=800)
     drive.straight(28)
     drive.straight(-72)
     drive.turn(-90)
@@ -266,4 +294,6 @@ grüne_steine_aufnehmen()
 weisse_steine_im_käfig()
 grün_weiss_abliefern()
 blaue_steine_im_käfig()
-#aktuell
+gelbe_im_käfig()
+gelbe_versorgen()
+#neu
