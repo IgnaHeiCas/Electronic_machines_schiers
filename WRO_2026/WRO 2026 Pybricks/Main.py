@@ -1,5 +1,13 @@
 from pybricks.hubs import PrimeHub
 from pybricks.pupdevices import Motor, ColorSensor, UltrasonicSensor, ForceSensor
+from pybricks.parameters import Button, Color, Direction, Port, Side, Stop
+from pybricks.robotics import DriveBase
+from pybricks.tools import wait, StopWatch
+
+hub = PrimeHub()
+
+from pybricks.hubs import PrimeHub
+from pybricks.pupdevices import Motor, ColorSensor, UltrasonicSensor, ForceSensor
 from pybricks.parameters import Button, Color, Direction, Port, Side, Stop, Axis
 from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch, hub_menu, run_task, multitask
@@ -288,7 +296,7 @@ def blaue_bloecke_aufnehmen():
     hoch_genau(-32)
     r_motor.run_angle(speed=500, rotation_angle=150)
     l_motor.run_angle(speed=500, rotation_angle=-425)
-    drive.straight(250)
+    drive.straight(247.5)
     drive.straight(-28)
     drive.settings(straight_speed=1000)
     hoch_arm.run_until_stalled(-800)
@@ -299,18 +307,17 @@ def blaue_bloecke_aufnehmen():
     halte_unten(False)
 
 def fertig():
-    hoch_arm.run_until_stalled(800)
-    halte_oben(True)
-    #drive.straight(153)
-    #drive.settings(straight_speed=300)
-    #bis_gruen()
-    #drive.settings(straight_speed=800)
-    #drive.straight(28)
-    #drive.straight(-72)
-    #drive.turn(90)
-    #drive.straight(-150)
-    #drive.straight(500)
-    #drive.reset()
+    hoch_genau(-32)
+    drive.straight(153)
+    drive.settings(straight_speed=300)
+    bis_gruen()
+    drive.settings(straight_speed=800)
+    drive.straight(28)
+    drive.straight(-72)
+    drive.turn(90)
+    drive.straight(-150)
+    drive.straight(500)
+    drive.reset()
     #drive.settings(straight_speed=300)
     #drive.straight(536)
     #halte_oben(False)
