@@ -13,8 +13,8 @@ r_motor = Motor(Port.B, profile=5)
 hoch_arm = Motor(Port.F, positive_direction=Direction.COUNTERCLOCKWISE)
 zangen_arm = Motor(Port.D, gears=[12, 20])
 #Farbsensor
-#l_farb = ColorSensor(Port.C)
-#r_farb = ColorSensor(Port.E)
+l_farb = ColorSensor(Port.C)
+r_farb = ColorSensor(Port.E)
 
 drive = DriveBase(l_motor, r_motor, wheel_diameter=62.5, axle_track=196.5)
 
@@ -55,10 +55,13 @@ def hoch_genau(grad):
     hoch_arm.run_angle(800, grad)
 
 def bis_gruen():
-   while l_farb.reflection() >= 94 or r_farb.reflection() >= 94:
+    while l_farb.reflection() >= 68 or r_farb.reflection() >= 68:
         drive.straight(3)
-    #else:
-        #drive.stop()
+    drive.stop()
+
+def reflection_messen(x):
+    while x:
+        print(l_farb.reflection())
 
 # === Programme ===
 def start():
@@ -337,6 +340,10 @@ def fertig():
 
 # === hier laufen lassen ===
 #print("Es fehlen noch:" + 8400 - hub.battery.voltage() + "von 8400")
+drive.settings(straight_speed=20)
+bis_gruen()
+#reflection_messen(True)
+wait(10000)
 drive.use_gyro(True)
 hoch()
 zange_hoch()
@@ -353,4 +360,4 @@ gelbe_versorgen()
 dreieckskelle_versorgt()
 blaue_bloecke_aufnehmen()
 fertig()
-#aktuell
+#neu
