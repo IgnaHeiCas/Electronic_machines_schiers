@@ -1,13 +1,5 @@
 from pybricks.hubs import PrimeHub
 from pybricks.pupdevices import Motor, ColorSensor, UltrasonicSensor, ForceSensor
-from pybricks.parameters import Button, Color, Direction, Port, Side, Stop
-from pybricks.robotics import DriveBase
-from pybricks.tools import wait, StopWatch
-
-hub = PrimeHub()
-
-from pybricks.hubs import PrimeHub
-from pybricks.pupdevices import Motor, ColorSensor, UltrasonicSensor, ForceSensor
 from pybricks.parameters import Button, Color, Direction, Port, Side, Stop, Axis
 from pybricks.robotics import DriveBase
 from pybricks.tools import wait, StopWatch, hub_menu, run_task, multitask
@@ -79,6 +71,7 @@ def start():
     drive.settings(straight_speed=800)
     wait(50)
     zangen_arm.run_until_stalled(800)
+    drive.reset(0)
 
 def gelbe_bloecke_aufnehmen():
     halte_bloecke(True)
@@ -100,6 +93,7 @@ def gelbe_bloecke_aufnehmen():
     halte_oben(False)
     hoch_arm.run(-800)
     wait(1000)
+    drive.reset(0)
 
 def bei_kessel():
     halte_unten(True)
@@ -131,6 +125,7 @@ def bei_kessel():
     wait(100)
     halte_oben(False)
     hoch_arm.run_until_stalled(-800)
+    drive.reset(0)
 
 def gelbe_bauklötze_versorgt():
     halte_bloecke(False)
@@ -142,6 +137,7 @@ def gelbe_bauklötze_versorgt():
     zangen_arm.run_until_stalled(-800, duty_limit=100)
     hoch_arm.run_until_stalled(800)
     drive.straight(15)
+    drive.reset(0)
 
 def grüne_steine_aufnehmen():
     halte_oben(True)
@@ -160,6 +156,7 @@ def grüne_steine_aufnehmen():
     #drive.turn(40)
     drive.turn(-10)
     halte_unten(False)
+    drive.reset(0)
 
 def weisse_steine_im_käfig():
     hoch_arm.run_until_stalled(800)
@@ -167,15 +164,16 @@ def weisse_steine_im_käfig():
     drive.straight(-360)
     halte_oben(False)
     hoch_genau(-30)
-    drive.turn(-68)
+    drive.turn(-72)
     drive.straight(-300)
+    drive.reset(0)
 
 def grün_weiss_abliefern():
     hoch_arm.run_until_stalled(-800)
     drive.straight(-10)
     halte_unten(True)
     drive.straight(288)
-    drive.turn(68)
+    drive.turn(70)
     drive.straight(380)
     drive.turn(90)
     drive.straight(-360)
@@ -201,6 +199,7 @@ def grün_weiss_abliefern():
     halte_unten(False)
     hoch_arm.run_until_stalled(800)
     drive.straight(-130)
+    drive.reset(0)
 
 def blaue_steine_im_käfig():
     halte_oben(True)
@@ -208,10 +207,10 @@ def blaue_steine_im_käfig():
     drive.straight(315)
     halte_oben(False)
     drive.turn(-135)
-    drive.straight(-285)
-    drive.turn(-45)
+    drive.straight(-275)
+    drive.turn(-46)
     hoch_genau(-24)
-    drive.straight(-190)
+    drive.straight(-195)
     hoch_arm.run_until_stalled(-800)
     halte_unten(True)
     drive.straight(-85)
@@ -232,19 +231,24 @@ def blaue_steine_im_käfig():
     #hoch_arm.run_until_stalled(800)
     hoch_genau(-29)
     drive.turn(86)
+    drive.reset(0)
 
 def gelbe_im_käfig():
-    drive.straight(-285)
+    drive.straight(-280)
+    drive.turn(-10)
+    drive.turn(20)
+    drive.turn(-10)
     hoch_arm.run_until_stalled(-800)
     halte_unten(True)
     drive.straight(-10)
-    drive.straight(295)
+    drive.straight(290)
     drive.turn(-86)
     drive.straight(-65)
     drive.straight(400)
     drive.reset()
     drive.turn(2)
     drive.straight(210)
+    drive.reset(0)
 
 def gelbe_versorgen():
     zange_genau(-100)
@@ -262,6 +266,7 @@ def gelbe_versorgen():
     drive.straight(-205)
     hoch_genau(14)
     wait(1000)
+    drive.reset(0)
   
 def dreieckskelle_versorgt():
     drive.straight(205)
@@ -275,6 +280,7 @@ def dreieckskelle_versorgt():
     zange_hoch()
     hoch_arm.run_until_stalled(1000)
     wait(300)
+    drive.reset(0)
     
 def blaue_bloecke_aufnehmen():
     drive.turn(5)
@@ -287,7 +293,7 @@ def blaue_bloecke_aufnehmen():
     hoch_arm.run_until_stalled(-1000)
     halte_unten(True)
     drive.use_gyro(False)
-    drive.settings(straight_speed=500)
+    drive.settings(straight_speed=200)
     drive.straight(-370)
     drive.straight(55)
     drive.straight(-20)
@@ -296,7 +302,7 @@ def blaue_bloecke_aufnehmen():
     hoch_genau(-32)
     r_motor.run_angle(speed=500, rotation_angle=150)
     l_motor.run_angle(speed=500, rotation_angle=-425)
-    drive.straight(247.5)
+    drive.straight(235)
     drive.straight(-28)
     drive.settings(straight_speed=1000)
     hoch_arm.run_until_stalled(-800)
@@ -305,25 +311,28 @@ def blaue_bloecke_aufnehmen():
     zangen_arm.run_until_stalled(800)
     halte_bloecke(True)
     halte_unten(False)
+    drive.reset(0)
 
 def fertig():
-    hoch_genau(-32)
-    drive.straight(153)
-    drive.settings(straight_speed=300)
-    bis_gruen()
-    drive.settings(straight_speed=800)
-    drive.straight(28)
-    drive.straight(-72)
-    drive.turn(90)
-    drive.straight(-150)
-    drive.straight(500)
-    drive.reset()
+    hoch_arm.run_until_stalled(800)
+    halte_oben(True)
+    #drive.straight(153)
+    #drive.settings(straight_speed=300)
+    #bis_gruen()
+    #drive.settings(straight_speed=800)
+    #drive.straight(28)
+    #drive.straight(-72)
+    #drive.turn(90)
+    #drive.straight(-150)
+    #drive.straight(500)
+    #drive.reset()
     #drive.settings(straight_speed=300)
     #drive.straight(536)
     #halte_oben(False)
     #hoch_arm.run_until_stalled(-800)
     #halte_bloecke(False)
     #zange_hoch()
+    #drive.reset(0)
 
 
 # === hier laufen lassen ===
