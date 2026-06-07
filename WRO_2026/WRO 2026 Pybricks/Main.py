@@ -56,7 +56,7 @@ def hoch_genau(grad):
 
 def bis_schwarz():
     while  r_farb.reflection() >= 66:
-        drive.straight(-1)
+        drive.straight(-5)
         print(r_farb.reflection())
     drive.stop()
 
@@ -110,7 +110,7 @@ def bei_kessel():
     drive.straight(75)
     drive.straight(-15)
     hoch_arm.run_until_stalled(1000)
-    hoch_genau(-38)
+    hoch_genau(-37)
     wait(100)
     drive.straight(15)
     #hoch_genau(7)
@@ -239,7 +239,7 @@ def blaue_steine_im_käfig():
     #drive.straight(50)
     #halte_unten(False)
     #hoch_arm.run_until_stalled(800)
-    hoch_genau(-33)
+    hoch_genau(-36)
     drive.turn(86)
     drive.reset(0)
 
@@ -281,7 +281,7 @@ def gelbe_versorgen():
     drive.reset(0)
   
 def dreieckskelle_versorgt():
-    drive.straight(205)
+    drive.straight(206)
     drive.turn(92)
     zange_genau(-100)
     drive.straight(410)
@@ -298,7 +298,7 @@ def blaue_bloecke_aufnehmen():
     drive.turn(5)
     drive.straight(-100)
     hoch_genau(-30)
-    drive.turn(-82)
+    drive.turn(-83)
     bis_schwarz()
     hoch_genau(16)
     drive.straight(-100)
@@ -310,12 +310,12 @@ def blaue_bloecke_aufnehmen():
     drive.straight(-230)
     drive.use_gyro(True)
     drive.straight(45)
-    drive.straight(-20)
+    drive.straight(-13)
     hoch_arm.run_until_stalled(1000)
     hoch_genau(-29)
     r_motor.run_angle(speed=500, rotation_angle=150)
     l_motor.run_angle(speed=500, rotation_angle=-425)
-    drive.straight(227)
+    drive.straight(215)
     drive.straight(-19)
     drive.settings(straight_speed=1000)
     hoch_arm.run_until_stalled(-800)
@@ -329,8 +329,8 @@ def blaue_bloecke_aufnehmen():
 def fertig():
     drive.straight(-20)
     hoch_arm.run_until_stalled(800)
-    hoch_genau(-30)
-    drive.straight(180)
+    hoch_genau(-33)
+    drive.straight(185)
     drive.straight(-72)
     l_motor.run_angle(speed=500, rotation_angle=425)
     r_motor.run_angle(speed=500, rotation_angle=-150)
@@ -341,7 +341,7 @@ def fertig():
     drive.use_gyro(True)
     drive.settings(straight_speed=500)
     drive.straight(100)
-    hoch_genau(14)
+    hoch_genau(11)
     drive.reset()
     #drive.straight(400)
     drive.straight(760)
