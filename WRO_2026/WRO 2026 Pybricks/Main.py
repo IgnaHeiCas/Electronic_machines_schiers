@@ -174,6 +174,9 @@ def weisse_steine_im_käfig():
     hoch_genau(-30)
     drive.turn(-72)
     drive.straight(-300)
+    drive.turn(-10)
+    drive.turn(20)
+    drive.turn(-10)
     drive.reset(0)
 
 def grün_weiss_abliefern():
@@ -239,7 +242,7 @@ def blaue_steine_im_käfig():
     #drive.straight(50)
     #halte_unten(False)
     #hoch_arm.run_until_stalled(800)
-    hoch_genau(-36)
+    hoch_genau(-33)
     drive.turn(86)
     drive.reset(0)
 
@@ -314,8 +317,8 @@ def blaue_bloecke_aufnehmen():
     hoch_arm.run_until_stalled(1000)
     hoch_genau(-29)
     r_motor.run_angle(speed=500, rotation_angle=150)
-    l_motor.run_angle(speed=500, rotation_angle=-425)
-    drive.straight(215)
+    l_motor.run_angle(speed=500, rotation_angle=-415)
+    drive.straight(222)
     drive.straight(-19)
     drive.settings(straight_speed=1000)
     hoch_arm.run_until_stalled(-800)
@@ -330,7 +333,7 @@ def fertig():
     drive.straight(-20)
     hoch_arm.run_until_stalled(800)
     hoch_genau(-33)
-    drive.straight(185)
+    drive.straight(175)
     drive.straight(-72)
     l_motor.run_angle(speed=500, rotation_angle=425)
     r_motor.run_angle(speed=500, rotation_angle=-150)
@@ -344,7 +347,7 @@ def fertig():
     hoch_genau(11)
     drive.reset()
     #drive.straight(400)
-    drive.straight(760)
+    drive.straight(765)
     halte_oben(False)
     hoch_arm.run_until_stalled(-800)
     wait(200)
@@ -379,4 +382,4 @@ gelbe_versorgen()
 dreieckskelle_versorgt()
 blaue_bloecke_aufnehmen()
 fertig()
-#aktuell
+#neu
