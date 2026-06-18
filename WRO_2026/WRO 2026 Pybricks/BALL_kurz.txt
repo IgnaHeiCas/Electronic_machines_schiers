@@ -112,22 +112,22 @@ def bei_kessel():
     drive.straight(67)#75
     drive.straight(-15)
     hoch_arm.run_until_stalled(1000)
-    hoch_genau(-38)
+    hoch_genau(-38)#38
     wait(100)
     drive.straight(15)
     drive.turn(88)
     drive.straight(540)
     drive.turn(-55)
-    drive.straight(173)
+    drive.straight(173)#173
     drive.turn(89)
     drive.turn(-30)
-    drive.settings(straight_speed=100)
+    drive.settings(straight_speed=100)  
     drive.straight(-20)
-    hoch_genau(8)
+    hoch_genau(10)
     hoch_arm.run_until_stalled(-1000)
     halte_unten(True)
     wait(1000)
-    drive.straight(-60)
+    drive.straight(-58)#60
     halte_unten(False)
     hoch_genau_ball(15)
     wait(300)
@@ -146,10 +146,10 @@ def bei_kessel():
     hoch()
     halte_oben(True)
     drive.turn(-15)
-    drive.straight(87)#82
+    drive.straight(83)#87
     drive.turn(-62)
     drive.settings(straight_speed=300)
-    drive.straight(437)#430
+    drive.straight(430)#430
     wait(100)
     halte_oben(False)
     hoch_arm.run_until_stalled(-800)
@@ -204,9 +204,8 @@ def grün_weiss_abliefern():
     drive.turn(45)
     drive.straight(595)
     drive.turn(125)
-    drive.straight(-305)
+    drive.straight(-308)#305
     drive.settings(straight_speed=300)
-    #drive.straight(17)
     drive.turn(47)
     halte_unten(False)
     hoch_genau(7)
@@ -220,8 +219,8 @@ def grün_weiss_abliefern():
     hoch_arm.run_until_stalled(-800)
     halte_unten(True)
     wait(200)
-    drive.straight(-115)
-    drive.straight(140)
+    drive.straight(-105)#115
+    drive.straight(130)#140
     drive.turn(-44)
     #drive.straight(-55)
     halte_unten(False)
@@ -232,17 +231,17 @@ def grün_weiss_abliefern():
 def blaue_steine_im_käfig():
     halte_oben(True)
     drive.settings(straight_speed=1000)
-    drive.straight(330)#315
+    drive.straight(350)#330
     halte_oben(False)
     drive.turn(-135)
-    drive.straight(-275)
+    drive.straight(-265)#275
     drive.turn(-48)
     hoch_genau(-24)
     drive.straight(-215)
     hoch_arm.run_until_stalled(-800)
     halte_unten(True)
     drive.use_gyro(False)
-    drive.straight(-65)
+    drive.straight(-50)#65
     drive.use_gyro(True)
     drive.straight(40)
     drive.turn(-100)
@@ -268,7 +267,7 @@ def gelbe_im_käfig():
     drive.straight(240)
     drive.turn(20)
     drive.straight(100)
-    drive.turn(25)
+    drive.turn(26)#25
     drive.reset(0)
 
 def gelbe_versorgen():
