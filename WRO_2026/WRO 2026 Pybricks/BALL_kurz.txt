@@ -88,7 +88,7 @@ def gelbe_bloecke_aufnehmen():
     drive.straight(-105)#95
     drive.turn(90)
     #drive.straight(-140)
-    drive.straight(993)#1100
+    drive.straight(990)#1100
     #drive.reset()
     #drive.turn(-1)
     #drive.straight(600)
@@ -118,7 +118,7 @@ def bei_kessel():
     drive.turn(88)
     drive.straight(540)
     drive.turn(-55)
-    drive.straight(173)#173
+    drive.straight(171)#173
     drive.turn(89)
     drive.turn(-30)
     drive.settings(straight_speed=100)  
