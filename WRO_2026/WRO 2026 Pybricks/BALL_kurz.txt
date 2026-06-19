@@ -85,7 +85,7 @@ def gelbe_bloecke_aufnehmen():
     halte_unten(False)
     hoch_arm.run_until_stalled(800)
     halte_oben(True)
-    drive.straight(-105)#95
+    drive.straight(-95)#105
     drive.turn(90)
     #drive.straight(-140)
     drive.straight(990)#1100
@@ -109,7 +109,7 @@ def bei_kessel():
     #drive.straight(-20)
     drive.reset(0)
     halte_unten(False)
-    drive.straight(75)#75
+    drive.straight(71)#67
     drive.straight(-15)
     hoch_arm.run_until_stalled(1000)
     hoch_genau(-37)#38
@@ -146,7 +146,7 @@ def bei_kessel():
     hoch()
     halte_oben(True)
     drive.turn(-15)
-    drive.straight(86)#83
+    drive.straight(83)#83
     drive.turn(-62)
     drive.settings(straight_speed=300)
     drive.straight(410)#430
@@ -204,7 +204,7 @@ def grün_weiss_abliefern():
     drive.turn(45)
     drive.straight(595)
     drive.turn(125)
-    drive.straight(-308)#305
+    drive.straight(-314)#308
     drive.settings(straight_speed=300)
     drive.turn(47)
     halte_unten(False)
@@ -280,13 +280,13 @@ def gelbe_versorgen():
     zangen_arm.run_until_stalled(-1000)
     drive.straight(-310)
     drive.turn(-90)
-    drive.straight(-184)
+    drive.straight(-184)#184
     hoch_genau(12)
     wait(1000)
     drive.reset(0)
   
 def dreieckskelle_versorgt():
-    drive.straight(180)
+    drive.straight(180)#180
     drive.turn(90)
     zange_genau(-100)
     drive.straight(325)
@@ -313,13 +313,13 @@ def blaue_bloecke_aufnehmen():
     drive.settings(straight_speed=200) 
     drive.straight(-240)#230
     drive.reset()
-    drive.straight(31)#29
+    drive.straight(32)#31
     drive.straight(-13)
     hoch_arm.run_until_stalled(1000)
     hoch_genau(-29)
     r_motor.run_angle(speed=500, rotation_angle=160)
     l_motor.run_angle(speed=500, rotation_angle=-405)
-    drive.straight(229)
+    drive.straight(235)#229
     drive.straight(-19)
     drive.settings(straight_speed=1000)
     hoch_arm.run_until_stalled(-800)
@@ -334,14 +334,14 @@ def fertig():
     drive.straight(-20)
     hoch_arm.run_until_stalled(800)
     hoch_genau(-35)
-    drive.straight(188)
+    drive.straight(182)#188
     drive.straight(-72)
     l_motor.run_angle(speed=500, rotation_angle=425)
     r_motor.run_angle(speed=500, rotation_angle=-150)
     hoch_arm.run_until_stalled(-1000)
     wait(200)
     drive.use_gyro(False)
-    drive.straight(-43)
+    drive.straight(-38)#43
     drive.use_gyro(True)
     drive.settings(straight_speed=500)
     drive.straight(100)
