@@ -101,15 +101,17 @@ def gelbe_bloecke_aufnehmen():
 
 def bei_kessel():
     halte_unten(True)
-    drive.use_gyro(False)
+    #drive.use_gyro(False)
     drive.straight(-55)
+    drive.reset(0)
     hoch_arm.run_until_stalled(-1000)
     drive.straight(20)
     hoch_arm.run_until_stalled(-1000)
     drive.straight(-20)
-    drive.use_gyro(True)
+    drive.reset(0)
+    #drive.use_gyro(True)
     halte_unten(False)
-    drive.straight(67)#75
+    drive.straight(62)#67
     drive.straight(-15)
     hoch_arm.run_until_stalled(1000)
     hoch_genau(-37)#38
@@ -118,7 +120,7 @@ def bei_kessel():
     drive.turn(88)
     drive.straight(540)
     drive.turn(-55)
-    drive.straight(171)#173
+    drive.straight(175)#173
     drive.turn(89)
     drive.turn(-30)
     drive.settings(straight_speed=100)  
@@ -241,7 +243,7 @@ def blaue_steine_im_käfig():
     hoch_arm.run_until_stalled(-800)
     halte_unten(True)
     drive.use_gyro(False)
-    drive.straight(-45)#65
+    drive.straight(-38)#65
     drive.use_gyro(True)
     drive.straight(40)
     drive.turn(-100)
@@ -281,7 +283,7 @@ def gelbe_versorgen():
     drive.straight(-410)
     drive.turn(-90)
     drive.straight(-180)
-    hoch_genau(10)
+    hoch_genau(12)
     wait(1000)
     drive.reset(0)
   
