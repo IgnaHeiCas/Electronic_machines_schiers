@@ -101,17 +101,15 @@ def gelbe_bloecke_aufnehmen():
 
 def bei_kessel():
     halte_unten(True)
-    #drive.use_gyro(False)
     drive.straight(-55)
-    drive.reset(0)
+    #drive.reset(0)
     hoch_arm.run_until_stalled(-1000)
-    drive.straight(20)
-    hoch_arm.run_until_stalled(-1000)
-    drive.straight(-20)
+    #drive.straight(20)
+    #hoch_arm.run_until_stalled(-1000)
+    #drive.straight(-20)
     drive.reset(0)
-    #drive.use_gyro(True)
     halte_unten(False)
-    drive.straight(62)#67
+    drive.straight(75)#75
     drive.straight(-15)
     hoch_arm.run_until_stalled(1000)
     hoch_genau(-37)#38
@@ -184,8 +182,8 @@ def grüne_steine_aufnehmen():
     drive.straight(-70)
     drive.use_gyro(True)
     drive.straight(150)
-    drive.turn(110)
-    drive.turn(-20)
+    drive.turn(105)#110
+    drive.turn(-15)#20
     halte_unten(False)
     drive.reset(0)
 
@@ -227,7 +225,7 @@ def grün_weiss_abliefern():
     #drive.straight(-55)
     halte_unten(False)
     hoch_arm.run_until_stalled(800)
-    drive.straight(-130)
+    drive.straight(-125)#130
     drive.reset(0)
 
 def blaue_steine_im_käfig():
@@ -276,7 +274,7 @@ def gelbe_versorgen():
     zange_genau(-100)
     drive.straight(475)#630
     drive.turn(30)#31
-    drive.straight(775)#785
+    drive.straight(785)#775
     halte_unten(False)
     drive.turn(-5)
     zangen_arm.run_until_stalled(-1000)
@@ -292,10 +290,10 @@ def dreieckskelle_versorgt():
     drive.turn(90)
     zange_genau(-100)
     drive.straight(325)
-    drive.turn(25)
-    drive.straight(220)
-    drive.turn(-35)
-    drive.straight(340)
+    drive.turn(25)#25
+    drive.straight(220)#220
+    drive.turn(-35)#35
+    drive.straight(340)#340
     zange_hoch()
     #hoch_arm.run_until_stalled(1000)
     wait(300)
@@ -315,7 +313,7 @@ def blaue_bloecke_aufnehmen():
     drive.settings(straight_speed=200) 
     drive.straight(-240)#230
     drive.reset()
-    drive.straight(29)#26
+    drive.straight(31)#29
     drive.straight(-13)
     hoch_arm.run_until_stalled(1000)
     hoch_genau(-29)
@@ -352,7 +350,7 @@ def fertig():
     drive.straight(800)#765
     halte_oben(False)
     hoch_arm.run_until_stalled(-800)
-    halte_unten(True)
+    #halte_unten(True)
     wait(200)
     halte_bloecke(False)
     zange_genau(40)
@@ -361,7 +359,7 @@ def fertig():
     wait(500)
     zange_genau(40)
     zangen_arm.run_until_stalled(-800, duty_limit=100)
-    halte_unten(False)
+    #halte_unten(False)
     hoch_arm.run_until_stalled(800)
     drive.reset(0)
 
